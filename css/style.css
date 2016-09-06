@@ -1,0 +1,56 @@
+body{
+	font-family: 'Mogra', cursive;
+	text-align: center;
+	background-color: #006600;
+}
+
+.jumbotron{
+	background-image:url("../images/backGround.png");
+}
+
+header{
+	font-size: 48px;
+  	color: white;
+	text-align:center;
+}
+/* initial page */
+
+.buttonRate {
+	font-size: 30px;
+	line-height: 1.5;
+	font-weight: bolder;
+	color:black;
+	margin: 20px;
+}
+
+.topicButton{
+	font-size: 15px;
+	line-height: 1.2;
+	color: black;
+	margin: 8px;
+	width:12em;
+}
+
+
+#startHead{
+	position: relative;
+	top:50%;
+	background-color: #006600;
+	color: white;
+}
+
+#pictureDiv img {
+	width:300px;
+	height:300px;
+	box-shadow: 5px;
+}
+
+label{
+	line-height: 1.5;
+	text-align: left;
+	color: black;
+}
+
+form{
+	background-color: white;
+}

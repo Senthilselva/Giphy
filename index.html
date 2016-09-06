@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Giphy - Senthil</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  	<link href="https://fonts.googleapis.com/css?family=Mogra" rel="stylesheet">
+  	
+  	<!-- Added link to the jQuery Library -->
+  	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-custom">
+  	<div class="container">
+      <!-- <div class = "navbar-center"> -->
+       Science Giphy Fun
+      <!-- </div> nav-center" -->
+    </div>
+  </nav>
+</header>
+
+<div class="container firstPage">  <!--container -->
+      <div class="jumbotron starGameJumbotron"> 
+        <div id = "startHead"> 
+
+          <h2> Please select the content rating you would like to view </h2>
+        </div>
+        <div id = "buttonDiv"> 
+          <button class = "btn btn-lg btn-success buttonRate" data-rate="Y"> Rated Y </button>
+          <button class = "btn btn-lg btn-success buttonRate" data-rate="G"> Rated G </button>
+          <button class = "btn btn-lg btn-success buttonRate" data-rate="PG"> Rated PG </button>
+          <button class = "btn btn-lg btn-success buttonRate" data-rate="R"> Rated R </button>
+        </div>  
+      </div><!--jumbotron -->
+</div><!-- first page -->
+
+<div class="container-fluid picPage">  <!--container -->
+  <div class="row"> <!-- row to divide the page-->
+    <div class="col-md-2 arrButtonDiv"> <!-- buttons -->
+    </div>
+    <div class="col-md-8"> <!-- array of pics -->
+    <div class="jumbotron picDiv">
+    </div>
+    </div>
+    <div class="col-md-2 formDiv"><!--form-->
+    <form id = "gifForm">         
+      <label>What other pictures do you want to see?</label>
+        <input type="text" id = "newtopic" size = "10"> <br>
+                
+      <label>How many pictures?</label>
+        <input type="text" id="noOfPic" maxlength="2" size="2"><br>
+                 
+      <input id = "newTopic" type="submit" value="Show Now">
+    </form>
+    </div>
+  </div>
+</div> <!-- pic Page-->
+
+<script src = "javascript/giphy.js" type="text/javascript"> </script>
+</body>
+</html>
