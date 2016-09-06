@@ -39,12 +39,13 @@ header{
 	color: white;
 }
 
-#pictureDiv img {
+.picture {
 	width:300px;
 	height:300px;
-	box-shadow: 5px;
+	margin:10px;
+	position: relative;
 }
-
+		
 label{
 	line-height: 1.5;
 	text-align: left;
@@ -54,3 +55,5 @@ label{
 form{
 	background-color: white;
 }
+
+

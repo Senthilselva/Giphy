@@ -22,6 +22,20 @@ startApp();
 
 //*************************start Page ends************
 
+//change the first letter after space to capital
+function changetoCapitol(pharse){
+	pharse= pharse.split(" ");
+	for (var i=0; i < pharse.length; i++){
+	//console.log(pharse[i][0].toUpperCase());
+		pharse[i] = pharse[i].split("");
+		pharse[i][0] = pharse[i][0].toUpperCase();
+		pharse[i] = pharse[i].join("");
+	}
+	pharse=pharse.join(" ");
+	return pharse;
+}
+
+
 //Creating an object for each topic
 function topic(topic, noOfPic){
 	//trim empty spaces in the topic and replace 
@@ -37,6 +51,7 @@ function topic(topic, noOfPic){
 		buttonTag.attr('data-topic', this.topic);
 		buttonTag.attr('data-totalpic', this.noOfPic);
 		var buttonText = this.topic.replace(/(\+)+/g," "); 
+		buttonText= changetoCapitol(buttonText);
 		buttonTag.text(buttonText);
 		return(buttonTag);
 	};
@@ -94,7 +109,7 @@ function displayPics(){
 			for(var j = 0; j < response.data.length; j++){
 				console.log("hahahahah")
 				var imgTab = $('<img>');
-				imgTab.addClass('img img-thumbnail ');
+				imgTab.addClass('img img-thumbnail picture');
 				imgTab.attr('data-still', response.data[j].images.fixed_height_still.url);
 				imgTab.attr('data-gif', response.data[j].images.fixed_height.url);
 				imgTab.attr('src',response.data[j].images.fixed_height_still.url);
@@ -123,6 +138,19 @@ $('.arrButtonDiv').on('click','button', displayPics);
 			$(this).attr('src', $(this).data('still'));
 		}
 	}); //changes still to gif on click
+
+
+//changes to gif if you hover over the pic 
+
+$('.picDiv').on('mouseover', '.img-thumbnail', function(){
+	$(this).attr('src', $(this).data('gif'));		
+}); 
+
+$('.picDiv').on('mouseout', '.img-thumbnail', function(){
+	$(this).attr('src', $(this).data('still'));		
+});
+
+
 
 //Adding a new topic
 $('#newTopic').on('click', function(){
