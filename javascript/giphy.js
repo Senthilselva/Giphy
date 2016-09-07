@@ -94,7 +94,9 @@ function displayPics(){
 
 	if(! $(this).parent().hasClass('arrButtonDiv')){
 	    $(".arrButtonDiv").empty();
-		for(var i =0; i < topics.length; i++){
+		for(var i =(topics.length-1); i >= 0 ; i--){
+	    console.log('printing tag');
+
 			$(".arrButtonDiv").append(topics[i].buttonTag);
 		}
 	}
@@ -157,7 +159,9 @@ $('#newTopic').on('click', function(){
 
 		// This line of code will grab the input from the textbox
 		var addedTopic = $('#newtopic').val().trim();
-		var NoofPic = parseInt($('#noOfPic').val);
+		var NoofPic = parseInt($('#noOfPic').val().trim());
+
+		console.log("no of pic" + NoofPic);
 
 		// The topic from the textbox is then added to our array
 		topics.push(new topic(addedTopic, NoofPic));
