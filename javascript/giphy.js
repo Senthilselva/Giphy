@@ -109,11 +109,11 @@ function displayPics(){
         .done(function(response) {
         	$('.picDiv').empty();
 			for(var j = 0; j < response.data.length; j++){
-				console.log("hahahahah")
 				var imgTab = $('<img>');
 				imgTab.addClass('img img-thumbnail picture');
 				imgTab.attr('data-still', response.data[j].images.fixed_height_still.url);
 				imgTab.attr('data-gif', response.data[j].images.fixed_height.url);
+				imgTab.attr('data-rate', response.data[j].rating);
 				imgTab.attr('src',response.data[j].images.fixed_height_still.url);
 				$('.picDiv').append(imgTab);
 				//console.log(imgTab);
@@ -145,11 +145,15 @@ $('.arrButtonDiv').on('click','button', displayPics);
 //changes to gif if you hover over the pic 
 
 $('.picDiv').on('mouseover', '.img-thumbnail', function(){
-	$(this).attr('src', $(this).data('gif'));		
+	$(this).attr('src', $(this).data('gif'));
+	$(this).css({
+		"width":"320px", "height":"320px","marin":"-5px"});		
 }); 
 
 $('.picDiv').on('mouseout', '.img-thumbnail', function(){
-	$(this).attr('src', $(this).data('still'));		
+	$(this).attr('src', $(this).data('still'));	
+	$(this).css({
+		"width":"300px", "height":"300px","margin":"20px"});	
 });
 
 
