@@ -13,7 +13,7 @@ function startApp(){
 //picPage is shown
 
 $('.firstPage  .btn').on('click',function(){
-	userSelectedRating = $(this).attr('data-rate');
+	userSelectedRating = $(this).attr('data-rate').toLowerCase();
 	$('.firstPage').hide();
 	$('.picPage').show();
 }); //rating election
@@ -67,6 +67,7 @@ topics.push(new topic(" physical reaction ", 10));
 topics.push(new topic("Bill Nye", 15));
 topics.push(new topic("   chemical reaction   ", 15));
 topics.push(new topic("   space 			ship   ", 10));
+topics.push(new topic("water density",10));
 
 function initDisplay(){
 	$(".picDiv").empty();
@@ -91,6 +92,11 @@ function displayPics(){
 	queryURL += "&limit="+totalpic+"&rating="+userSelectedRating;
 
 	//console.log(queryURL);
+	//This will be used to display as heading
+	var displayTopic = selectTopic.replace(/(\+)+/g," "); 
+		displayTopic = changetoCapitol(displayTopic);
+
+	//Move the buttons to the side
 
 	if(! $(this).parent().hasClass('arrButtonDiv')){
 	    $(".arrButtonDiv").empty();
@@ -107,7 +113,13 @@ function displayPics(){
             method: 'GET'
         })
         .done(function(response) {
+        	//Display heading
         	$('.picDiv').empty();
+        	var topicHead = $('<h1>');
+        		topicHead.addClass("h1style");
+        	    topicHead.text(displayTopic);
+        	    $('.picDiv').append(topicHead);
+        	//display Picture
 			for(var j = 0; j < response.data.length; j++){
 				var imgTab = $('<img>');
 				imgTab.addClass('img img-thumbnail picture');

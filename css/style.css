@@ -48,6 +48,10 @@ header{
 	position: relative;
 }
 
+.jumbotron .h1, .jumbotron h1{
+	background-color: #006600;
+	color: white;
+}
 
 form{
 	background-color: white;
