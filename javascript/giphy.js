@@ -88,7 +88,7 @@ function displayPics(){
 	var totalpic = $(this).data('totalpic');
 
 	//console.log(selectTopic + "   "+ totalpic);
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q="+selectTopic+"&api_key=dc6zaTOxFJmzC";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q="+selectTopic+"&api_key=dc6zaTOxFJmzC";
 	queryURL += "&limit="+totalpic+"&rating="+userSelectedRating;
 
 	//console.log(queryURL);
@@ -121,13 +121,19 @@ function displayPics(){
         	    $('.picDiv').append(topicHead);
         	//display Picture
 			for(var j = 0; j < response.data.length; j++){
+				var figTag = $('<figure>');
+				figTag.addClass("figClass col-md-4");
 				var imgTab = $('<img>');
 				imgTab.addClass('img img-thumbnail picture');
 				imgTab.attr('data-still', response.data[j].images.fixed_height_still.url);
 				imgTab.attr('data-gif', response.data[j].images.fixed_height.url);
 				imgTab.attr('data-rate', response.data[j].rating);
 				imgTab.attr('src',response.data[j].images.fixed_height_still.url);
-				$('.picDiv').append(imgTab);
+				var capTag = $('<span>');
+				capTag.text("Rated  : "+response.data[j].rating.toUpperCase());
+
+				$('.picDiv').append(figTag);
+				figTag.append(imgTab,capTag);
 				//console.log(imgTab);
 			}
         	//$(".picDiv").append(JSON.stringify(response));
@@ -158,14 +164,14 @@ $('.arrButtonDiv').on('click','button', displayPics);
 
 $('.picDiv').on('mouseover', '.img-thumbnail', function(){
 	$(this).attr('src', $(this).data('gif'));
-	$(this).css({
-		"width":"320px", "height":"320px","marin":"-5px"});		
+	// $(this).css({
+	// 	 "width":"320px", "height":"320px","margin":"-5px"});		
 }); 
 
 $('.picDiv').on('mouseout', '.img-thumbnail', function(){
 	$(this).attr('src', $(this).data('still'));	
-	$(this).css({
-		"width":"300px", "height":"300px","margin":"20px"});	
+	// $(this).css({
+	// 	"width":"300px", "height":"300px","margin":"20px"});	
 });
 
 
