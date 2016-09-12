@@ -68,6 +68,7 @@ topics.push(new topic("Bill Nye", 15));
 topics.push(new topic("   chemical reaction   ", 15));
 topics.push(new topic("   space 			ship   ", 10));
 topics.push(new topic("water density",10));
+topics.push(new topic("Heat energy", 12));
 
 function initDisplay(){
 	$(".picDiv").empty();
@@ -100,7 +101,7 @@ function displayPics(){
 
 	if(! $(this).parent().hasClass('arrButtonDiv')){
 	    $(".arrButtonDiv").empty();
-		for(var i =(topics.length-1); i >= 0 ; i--){
+		for(var i =0; i < topics.length; i++){
 	    console.log('printing tag');
 
 			$(".arrButtonDiv").append(topics[i].buttonTag);
@@ -122,9 +123,11 @@ function displayPics(){
         	//display Picture
 			for(var j = 0; j < response.data.length; j++){
 				var figTag = $('<figure>');
-				figTag.addClass("figClass col-md-4");
+				figTag.addClass("col-md-4");
+				var picTag = $('<div>');
+				picTag.addClass("thumbnail");
 				var imgTab = $('<img>');
-				imgTab.addClass('img img-thumbnail picture');
+				imgTab.addClass('picture');
 				imgTab.attr('data-still', response.data[j].images.fixed_height_still.url);
 				imgTab.attr('data-gif', response.data[j].images.fixed_height.url);
 				imgTab.attr('data-rate', response.data[j].rating);
@@ -133,7 +136,8 @@ function displayPics(){
 				capTag.text("Rated  : "+response.data[j].rating.toUpperCase());
 
 				$('.picDiv').append(figTag);
-				figTag.append(imgTab,capTag);
+				figTag.append(picTag);
+				picTag.append(imgTab,capTag);
 				//console.log(imgTab);
 			}
         	//$(".picDiv").append(JSON.stringify(response));
@@ -151,7 +155,7 @@ $('.picDiv').on('click', 'button', displayPics);
 $('.arrButtonDiv').on('click','button', displayPics);
 
  //changes still to gif and gif to still on click
-	$('.picDiv').on('click', '.img-thumbnail', function(){
+	$('.picDiv').on('click', 'img', function(){
 		if($(this).attr('src') == $(this).data('still')){
 			$(this).attr('src', $(this).data('gif'));
 		} else {
@@ -162,17 +166,17 @@ $('.arrButtonDiv').on('click','button', displayPics);
 
 //changes to gif if you hover over the pic 
 
-$('.picDiv').on('mouseover', '.img-thumbnail', function(){
-	$(this).attr('src', $(this).data('gif'));
-	// $(this).css({
-	// 	 "width":"320px", "height":"320px","margin":"-5px"});		
-}); 
+// $('.picDiv').on('mouseover', 'img', function(){
+// 	$(this).attr('src', $(this).data('gif'));
+// 	// $(this).css({
+// 	// 	 "width":"320px", "height":"320px","margin":"-5px"});		
+// }); 
 
-$('.picDiv').on('mouseout', '.img-thumbnail', function(){
-	$(this).attr('src', $(this).data('still'));	
-	// $(this).css({
-	// 	"width":"300px", "height":"300px","margin":"20px"});	
-});
+// $('.picDiv').on('mouseout', 'img', function(){
+// 	$(this).attr('src', $(this).data('still'));	
+// 	// $(this).css({
+// 	// 	"width":"300px", "height":"300px","margin":"20px"});	
+// });
 
 
 
