@@ -40,9 +40,13 @@ function changetoCapitol(pharse){
 function topic(topic, noOfPic){
 	//trim empty spaces in the topic and replace 
 	topic = topic.trim();
+
+	//removes multi spaces into single space
 	topic = topic.replace( /\s\s+/g, ' ' );
+	//convert the spaces to +
 	topic = topic.replace(/ +/g,"+");
 	this.topic = topic.toLowerCase();
+	
 	this.noOfPic = noOfPic;
 
 	this.createButton = function(){
@@ -78,11 +82,36 @@ function initDisplay(){
 	}
 }
 
+function isTopicValid(addedtopic) {
+
+	//console.log(addedtopic);
+	
+
+	//changing addedIopic to the format same format as it is stored
+	//trim empty spaces in the topic and replace 
+	addedtopic = addedtopic.trim();
+	//removes multi spaces into single space
+	addedtopic = addedtopic.replace( /\s\s+/g, ' ' );
+	//convert the spaces to +
+	addedtopic = addedtopic.replace(/ +/g,"+");
+	addedtopic = addedtopic.toLowerCase();
+
+	//Check to see if the button already in the list
+	for(var i=0; i < topics.length; i++){
+		debugger;
+			if(topics[i].topic == addedtopic){
+				//if it is response true
+				return true;
+			}
+	}
+	return false;
+}
+
 
 function displayPics(){
 
 	//Ajax the giphy API for the details
-	console.log("displayPics");
+	//console.log("displayPics");
 	//console.log($(this).parent().hasClass('picDiv'));
 
 	var selectTopic = $(this).data('topic');
@@ -102,7 +131,7 @@ function displayPics(){
 	if(! $(this).parent().hasClass('arrButtonDiv')){
 	    $(".arrButtonDiv").empty();
 		for(var i =0; i < topics.length; i++){
-	    console.log('printing tag');
+	   // console.log('printing tag');
 
 			$(".arrButtonDiv").append(topics[i].buttonTag);
 		}
@@ -164,21 +193,6 @@ $('.arrButtonDiv').on('click','button', displayPics);
 	}); //changes still to gif on click
 
 
-//changes to gif if you hover over the pic 
-
-// $('.picDiv').on('mouseover', 'img', function(){
-// 	$(this).attr('src', $(this).data('gif'));
-// 	// $(this).css({
-// 	// 	 "width":"320px", "height":"320px","margin":"-5px"});		
-// }); 
-
-// $('.picDiv').on('mouseout', 'img', function(){
-// 	$(this).attr('src', $(this).data('still'));	
-// 	// $(this).css({
-// 	// 	"width":"300px", "height":"300px","margin":"20px"});	
-// });
-
-
 
 //Adding a new topic
 $('#newTopic').on('click', function(){
@@ -187,7 +201,13 @@ $('#newTopic').on('click', function(){
 		var addedTopic = $('#newtopic').val().trim();
 		var NoofPic = parseInt($('#noOfPic').val().trim());
 
-		console.log("no of pic" + NoofPic);
+		console.log(addedTopic);
+		//debugger;
+
+		if(isTopicValid(addedTopic)){
+			alert("This already exists !!");
+			return false;
+		}
 
 		// The topic from the textbox is then added to our array
 		topics.push(new topic(addedTopic, NoofPic));
@@ -198,6 +218,7 @@ $('#newTopic').on('click', function(){
 		// We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
 		return false;
 	});
+
 
 
 }); //document ready
