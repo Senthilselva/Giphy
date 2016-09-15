@@ -98,7 +98,7 @@ function isTopicValid(addedtopic) {
 
 	//Check to see if the button already in the list
 	for(var i=0; i < topics.length; i++){
-		debugger;
+		//debugger;
 			if(topics[i].topic == addedtopic){
 				//if it is response true
 				return true;
