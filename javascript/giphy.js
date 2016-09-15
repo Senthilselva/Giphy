@@ -73,6 +73,9 @@ topics.push(new topic("   chemical reaction   ", 15));
 topics.push(new topic("   space 			ship   ", 10));
 topics.push(new topic("water density",10));
 topics.push(new topic("Heat energy", 12));
+topics.push(new topic("electromagnet", 35));
+topics.push(new topic("magnets", 6));
+topics.push(new topic("space", 10));
 
 function initDisplay(){
 	$(".picDiv").empty();
@@ -152,7 +155,7 @@ function displayPics(){
         	//display Picture
 			for(var j = 0; j < response.data.length; j++){
 				var figTag = $('<figure>');
-				figTag.addClass("col-md-4");
+				figTag.addClass("col-lg-4 col-md-4 col-sm-6 col-xs-10");
 				var picTag = $('<div>');
 				picTag.addClass("thumbnail");
 				var imgTab = $('<img>');
